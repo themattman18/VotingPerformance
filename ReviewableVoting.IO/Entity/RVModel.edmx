@@ -1,0 +1,1092 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="reviewablevotingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoleClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="450" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedName" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ProviderDisplayName" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="450" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEnd" Type="datetimeoffset" Precision="7" />
+          <Property Name="NormalizedEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedUserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Candidates">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VoterID" Type="int" />
+          <Property Name="ElectionID" Type="int" />
+          <Property Name="PartyID" Type="int" />
+          <Property Name="CandidateChecksum" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Election">
+          <Key>
+            <PropertyRef Name="ElectionID" />
+          </Key>
+          <Property Name="ElectionID" Type="int" Nullable="false" />
+          <Property Name="BeginDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Office" Type="varchar" MaxLength="20" />
+          <Property Name="ElectionLevelID" Type="int" />
+          <Property Name="PreviousVoteID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectionLevel">
+          <Key>
+            <PropertyRef Name="ElectionLevelID" />
+          </Key>
+          <Property Name="ElectionLevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElectionLevel" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="PartyID" />
+          </Key>
+          <Property Name="PartyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StreetAddress">
+          <Key>
+            <PropertyRef Name="StreetAddressID" />
+          </Key>
+          <Property Name="StreetAddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZipCodeID" Type="int" />
+        </EntityType>
+        <EntityType Name="UnconfirmedVotes">
+          <Key>
+            <PropertyRef Name="UnconfirmedVoteID" />
+          </Key>
+          <Property Name="UnconfirmedVoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+          <Property Name="AuthToken" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="TimeToLive" Type="int" Nullable="false" />
+          <Property Name="VoteAddEnd" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="VoteID" />
+          </Key>
+          <Property Name="VoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeStamp" Type="date" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="voterID" Type="int" />
+          <Property Name="VoteCheckSum" Type="varchar(max)" Nullable="false" />
+          <Property Name="CheckSum" Type="varchar(max)" Nullable="false" />
+          <Property Name="CumulativeCheckSum" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voter">
+          <Key>
+            <PropertyRef Name="VoterID" />
+          </Key>
+          <Property Name="VoterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SSN" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="Photo" Type="image" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="BirthPlace" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Private_ID" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="AspNetUsersID" Type="nvarchar" MaxLength="450" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VoterAddress">
+          <Key>
+            <PropertyRef Name="VoterAddressID" />
+          </Key>
+          <Property Name="VoterAddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VoterID" Type="int" Nullable="false" />
+          <Property Name="StreetAddressID" Type="int" />
+        </EntityType>
+        <EntityType Name="ZipCode">
+          <Key>
+            <PropertyRef Name="ZipCodeID" />
+          </Key>
+          <Property Name="ZipCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZipCode" Type="int" />
+          <Property Name="City" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <Association Name="CandidateID_fk">
+          <End Role="Candidates" Type="Self.Candidates" Multiplicity="0..1" />
+          <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidates">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="Vote">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Election_fk">
+          <End Role="Election" Type="Self.Election" Multiplicity="0..1" />
+          <End Role="Candidates" Type="Self.Candidates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Election">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="Candidates">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElectionLevel_fk">
+          <End Role="ElectionLevel" Type="Self.ElectionLevel" Multiplicity="0..1" />
+          <End Role="Election" Type="Self.Election" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionLevel">
+              <PropertyRef Name="ElectionLevelID" />
+            </Principal>
+            <Dependent Role="Election">
+              <PropertyRef Name="ElectionLevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityRoleClaim&lt;string&gt;_IdentityRole_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
+          <End Role="AspNetRoleClaims" Type="Self.AspNetRoleClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRoleClaims">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityUserClaim&lt;string&gt;_ApplicationUser_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityUserLogin&lt;string&gt;_ApplicationUser_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityUserRole&lt;string&gt;_ApplicationUser_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityUserRole&lt;string&gt;_IdentityRole_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnconfirmedVotes_Candidates">
+          <End Role="Candidates" Type="Self.Candidates" Multiplicity="1" />
+          <End Role="UnconfirmedVotes" Type="Self.UnconfirmedVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidates">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="UnconfirmedVotes">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voter_ASPUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Voter" Type="Self.Voter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voter">
+              <PropertyRef Name="AspNetUsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Party_fk">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Candidates" Type="Self.Candidates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyID" />
+            </Principal>
+            <Dependent Role="Candidates">
+              <PropertyRef Name="PartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StreetAddress_fk">
+          <End Role="StreetAddress" Type="Self.StreetAddress" Multiplicity="0..1" />
+          <End Role="VoterAddress" Type="Self.VoterAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetAddress">
+              <PropertyRef Name="StreetAddressID" />
+            </Principal>
+            <Dependent Role="VoterAddress">
+              <PropertyRef Name="StreetAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VoterHistoryID_fk">
+          <End Role="Voter" Type="Self.Voter" Multiplicity="1" />
+          <End Role="VoterAddress" Type="Self.VoterAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="VoterID" />
+            </Principal>
+            <Dependent Role="VoterAddress">
+              <PropertyRef Name="VoterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VoterID_fk">
+          <End Role="Voter" Type="Self.Voter" Multiplicity="0..1" />
+          <End Role="Candidates" Type="Self.Candidates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="VoterID" />
+            </Principal>
+            <Dependent Role="Candidates">
+              <PropertyRef Name="VoterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VotersID_fk">
+          <End Role="Voter" Type="Self.Voter" Multiplicity="0..1" />
+          <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="VoterID" />
+            </Principal>
+            <Dependent Role="Vote">
+              <PropertyRef Name="voterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZipCode_fk">
+          <End Role="ZipCode" Type="Self.ZipCode" Multiplicity="0..1" />
+          <End Role="StreetAddress" Type="Self.StreetAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZipCode">
+              <PropertyRef Name="ZipCodeID" />
+            </Principal>
+            <Dependent Role="StreetAddress">
+              <PropertyRef Name="ZipCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="reviewablevotingModelStoreContainer">
+          <EntitySet Name="AspNetRoleClaims" EntityType="Self.AspNetRoleClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Candidates" EntityType="Self.Candidates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Election" EntityType="Self.Election" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElectionLevel" EntityType="Self.ElectionLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Party" EntityType="Self.Party" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StreetAddress" EntityType="Self.StreetAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnconfirmedVotes" EntityType="Self.UnconfirmedVotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voter" EntityType="Self.Voter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoterAddress" EntityType="Self.VoterAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZipCode" EntityType="Self.ZipCode" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="CandidateID_fk" Association="Self.CandidateID_fk">
+            <End Role="Candidates" EntitySet="Candidates" />
+            <End Role="Vote" EntitySet="Vote" />
+          </AssociationSet>
+          <AssociationSet Name="Election_fk" Association="Self.Election_fk">
+            <End Role="Election" EntitySet="Election" />
+            <End Role="Candidates" EntitySet="Candidates" />
+          </AssociationSet>
+          <AssociationSet Name="ElectionLevel_fk" Association="Self.ElectionLevel_fk">
+            <End Role="ElectionLevel" EntitySet="ElectionLevel" />
+            <End Role="Election" EntitySet="Election" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityRoleClaim&lt;string&gt;_IdentityRole_RoleId" Association="Self.FK_IdentityRoleClaim&lt;string&gt;_IdentityRole_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetRoleClaims" EntitySet="AspNetRoleClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityUserClaim&lt;string&gt;_ApplicationUser_UserId" Association="Self.FK_IdentityUserClaim&lt;string&gt;_ApplicationUser_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityUserLogin&lt;string&gt;_ApplicationUser_UserId" Association="Self.FK_IdentityUserLogin&lt;string&gt;_ApplicationUser_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityUserRole&lt;string&gt;_ApplicationUser_UserId" Association="Self.FK_IdentityUserRole&lt;string&gt;_ApplicationUser_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityUserRole&lt;string&gt;_IdentityRole_RoleId" Association="Self.FK_IdentityUserRole&lt;string&gt;_IdentityRole_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnconfirmedVotes_Candidates" Association="Self.FK_UnconfirmedVotes_Candidates">
+            <End Role="Candidates" EntitySet="Candidates" />
+            <End Role="UnconfirmedVotes" EntitySet="UnconfirmedVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voter_ASPUser" Association="Self.FK_Voter_ASPUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Voter" EntitySet="Voter" />
+          </AssociationSet>
+          <AssociationSet Name="Party_fk" Association="Self.Party_fk">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Candidates" EntitySet="Candidates" />
+          </AssociationSet>
+          <AssociationSet Name="StreetAddress_fk" Association="Self.StreetAddress_fk">
+            <End Role="StreetAddress" EntitySet="StreetAddress" />
+            <End Role="VoterAddress" EntitySet="VoterAddress" />
+          </AssociationSet>
+          <AssociationSet Name="VoterHistoryID_fk" Association="Self.VoterHistoryID_fk">
+            <End Role="Voter" EntitySet="Voter" />
+            <End Role="VoterAddress" EntitySet="VoterAddress" />
+          </AssociationSet>
+          <AssociationSet Name="VoterID_fk" Association="Self.VoterID_fk">
+            <End Role="Voter" EntitySet="Voter" />
+            <End Role="Candidates" EntitySet="Candidates" />
+          </AssociationSet>
+          <AssociationSet Name="VotersID_fk" Association="Self.VotersID_fk">
+            <End Role="Voter" EntitySet="Voter" />
+            <End Role="Vote" EntitySet="Vote" />
+          </AssociationSet>
+          <AssociationSet Name="ZipCode_fk" Association="Self.ZipCode_fk">
+            <End Role="ZipCode" EntitySet="ZipCode" />
+            <End Role="StreetAddress" EntitySet="StreetAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="reviewablevotingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="reviewablevotingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoleClaims" EntityType="reviewablevotingModel.AspNetRoleClaim" />
+          <EntitySet Name="AspNetRoles" EntityType="reviewablevotingModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="reviewablevotingModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="reviewablevotingModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="reviewablevotingModel.AspNetUser" />
+          <EntitySet Name="Candidates" EntityType="reviewablevotingModel.Candidate" />
+          <EntitySet Name="Elections" EntityType="reviewablevotingModel.Election" />
+          <EntitySet Name="ElectionLevels" EntityType="reviewablevotingModel.ElectionLevel" />
+          <EntitySet Name="Parties" EntityType="reviewablevotingModel.Party" />
+          <EntitySet Name="StreetAddresses" EntityType="reviewablevotingModel.StreetAddress" />
+          <EntitySet Name="Voters" EntityType="reviewablevotingModel.Voter" />
+          <EntitySet Name="VoterAddresses" EntityType="reviewablevotingModel.VoterAddress" />
+          <EntitySet Name="ZipCodes" EntityType="reviewablevotingModel.ZipCode" />
+          <AssociationSet Name="FK_IdentityRoleClaim_string__IdentityRole_RoleId" Association="reviewablevotingModel.FK_IdentityRoleClaim_string__IdentityRole_RoleId">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetRoleClaim" EntitySet="AspNetRoleClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityUserClaim_string__ApplicationUser_UserId" Association="reviewablevotingModel.FK_IdentityUserClaim_string__ApplicationUser_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentityUserLogin_string__ApplicationUser_UserId" Association="reviewablevotingModel.FK_IdentityUserLogin_string__ApplicationUser_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voter_ASPUser" Association="reviewablevotingModel.FK_Voter_ASPUser">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Voter" EntitySet="Voters" />
+          </AssociationSet>
+          <AssociationSet Name="Election_fk" Association="reviewablevotingModel.Election_fk">
+            <End Role="Election" EntitySet="Elections" />
+            <End Role="Candidate" EntitySet="Candidates" />
+          </AssociationSet>
+          <AssociationSet Name="Party_fk" Association="reviewablevotingModel.Party_fk">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Candidate" EntitySet="Candidates" />
+          </AssociationSet>
+          <AssociationSet Name="VoterID_fk" Association="reviewablevotingModel.VoterID_fk">
+            <End Role="Voter" EntitySet="Voters" />
+            <End Role="Candidate" EntitySet="Candidates" />
+          </AssociationSet>
+          <AssociationSet Name="ElectionLevel_fk" Association="reviewablevotingModel.ElectionLevel_fk">
+            <End Role="ElectionLevel" EntitySet="ElectionLevels" />
+            <End Role="Election" EntitySet="Elections" />
+          </AssociationSet>
+          <AssociationSet Name="StreetAddress_fk" Association="reviewablevotingModel.StreetAddress_fk">
+            <End Role="StreetAddress" EntitySet="StreetAddresses" />
+            <End Role="VoterAddress" EntitySet="VoterAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="ZipCode_fk" Association="reviewablevotingModel.ZipCode_fk">
+            <End Role="ZipCode" EntitySet="ZipCodes" />
+            <End Role="StreetAddress" EntitySet="StreetAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="VoterHistoryID_fk" Association="reviewablevotingModel.VoterHistoryID_fk">
+            <End Role="Voter" EntitySet="Voters" />
+            <End Role="VoterAddress" EntitySet="VoterAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="reviewablevotingModel.AspNetUserRoles">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+          </AssociationSet>
+          <EntitySet Name="UnconfirmedVotes" EntityType="reviewablevotingModel.UnconfirmedVote" />
+          <AssociationSet Name="FK_UnconfirmedVotes_Candidates" Association="reviewablevotingModel.FK_UnconfirmedVotes_Candidates">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="UnconfirmedVote" EntitySet="UnconfirmedVotes" />
+          </AssociationSet>
+          <EntitySet Name="Votes" EntityType="reviewablevotingModel.Vote" />
+          <AssociationSet Name="CandidateID_fk" Association="reviewablevotingModel.CandidateID_fk">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="Vote" EntitySet="Votes" />
+          </AssociationSet>
+          <AssociationSet Name="VotersID_fk" Association="reviewablevotingModel.VotersID_fk">
+            <End Role="Voter" EntitySet="Voters" />
+            <End Role="Vote" EntitySet="Votes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetRoleClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRole" Relationship="reviewablevotingModel.FK_IdentityRoleClaim_string__IdentityRole_RoleId" FromRole="AspNetRoleClaim" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRoleClaims" Relationship="reviewablevotingModel.FK_IdentityRoleClaim_string__IdentityRole_RoleId" FromRole="AspNetRole" ToRole="AspNetRoleClaim" />
+          <NavigationProperty Name="AspNetUsers" Relationship="reviewablevotingModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="reviewablevotingModel.FK_IdentityUserClaim_string__ApplicationUser_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderDisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="reviewablevotingModel.FK_IdentityUserLogin_string__ApplicationUser_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEnd" Type="DateTimeOffset" Precision="7" />
+          <Property Name="NormalizedEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="reviewablevotingModel.FK_IdentityUserClaim_string__ApplicationUser_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="reviewablevotingModel.FK_IdentityUserLogin_string__ApplicationUser_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="Voters" Relationship="reviewablevotingModel.FK_Voter_ASPUser" FromRole="AspNetUser" ToRole="Voter" />
+          <NavigationProperty Name="AspNetRoles" Relationship="reviewablevotingModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="Candidate">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VoterID" Type="Int32" />
+          <Property Name="ElectionID" Type="Int32" />
+          <Property Name="PartyID" Type="Int32" />
+          <NavigationProperty Name="Election" Relationship="reviewablevotingModel.Election_fk" FromRole="Candidate" ToRole="Election" />
+          <NavigationProperty Name="Party" Relationship="reviewablevotingModel.Party_fk" FromRole="Candidate" ToRole="Party" />
+          <NavigationProperty Name="Voter" Relationship="reviewablevotingModel.VoterID_fk" FromRole="Candidate" ToRole="Voter" />
+          <Property Name="CandidateChecksum" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="UnconfirmedVotes" Relationship="reviewablevotingModel.FK_UnconfirmedVotes_Candidates" FromRole="Candidate" ToRole="UnconfirmedVote" />
+          <NavigationProperty Name="Votes" Relationship="reviewablevotingModel.CandidateID_fk" FromRole="Candidate" ToRole="Vote" />
+        </EntityType>
+        <EntityType Name="Election">
+          <Key>
+            <PropertyRef Name="ElectionID" />
+          </Key>
+          <Property Name="ElectionID" Type="Int32" Nullable="false" />
+          <Property Name="BeginDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Office" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ElectionLevelID" Type="Int32" />
+          <NavigationProperty Name="Candidates" Relationship="reviewablevotingModel.Election_fk" FromRole="Election" ToRole="Candidate" />
+          <NavigationProperty Name="ElectionLevel" Relationship="reviewablevotingModel.ElectionLevel_fk" FromRole="Election" ToRole="ElectionLevel" />
+          <Property Name="PreviousVoteID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectionLevel">
+          <Key>
+            <PropertyRef Name="ElectionLevelID" />
+          </Key>
+          <Property Name="ElectionLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElectionLevel1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Elections" Relationship="reviewablevotingModel.ElectionLevel_fk" FromRole="ElectionLevel" ToRole="Election" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="PartyID" />
+          </Key>
+          <Property Name="PartyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Candidates" Relationship="reviewablevotingModel.Party_fk" FromRole="Party" ToRole="Candidate" />
+        </EntityType>
+        <EntityType Name="StreetAddress">
+          <Key>
+            <PropertyRef Name="StreetAddressID" />
+          </Key>
+          <Property Name="StreetAddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCodeID" Type="Int32" />
+          <NavigationProperty Name="VoterAddresses" Relationship="reviewablevotingModel.StreetAddress_fk" FromRole="StreetAddress" ToRole="VoterAddress" />
+          <NavigationProperty Name="ZipCode" Relationship="reviewablevotingModel.ZipCode_fk" FromRole="StreetAddress" ToRole="ZipCode" />
+        </EntityType>
+        <EntityType Name="Voter">
+          <Key>
+            <PropertyRef Name="VoterID" />
+          </Key>
+          <Property Name="VoterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SSN" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BirthPlace" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Private_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AspNetUsersID" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="reviewablevotingModel.FK_Voter_ASPUser" FromRole="Voter" ToRole="AspNetUser" />
+          <NavigationProperty Name="Candidates" Relationship="reviewablevotingModel.VoterID_fk" FromRole="Voter" ToRole="Candidate" />
+          <NavigationProperty Name="VoterAddresses" Relationship="reviewablevotingModel.VoterHistoryID_fk" FromRole="Voter" ToRole="VoterAddress" />
+          <NavigationProperty Name="Votes" Relationship="reviewablevotingModel.VotersID_fk" FromRole="Voter" ToRole="Vote" />
+        </EntityType>
+        <EntityType Name="VoterAddress">
+          <Key>
+            <PropertyRef Name="VoterAddressID" />
+          </Key>
+          <Property Name="VoterAddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VoterID" Type="Int32" Nullable="false" />
+          <Property Name="StreetAddressID" Type="Int32" />
+          <NavigationProperty Name="StreetAddress" Relationship="reviewablevotingModel.StreetAddress_fk" FromRole="VoterAddress" ToRole="StreetAddress" />
+          <NavigationProperty Name="Voter" Relationship="reviewablevotingModel.VoterHistoryID_fk" FromRole="VoterAddress" ToRole="Voter" />
+        </EntityType>
+        <EntityType Name="ZipCode">
+          <Key>
+            <PropertyRef Name="ZipCodeID" />
+          </Key>
+          <Property Name="ZipCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZipCode1" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="StreetAddresses" Relationship="reviewablevotingModel.ZipCode_fk" FromRole="ZipCode" ToRole="StreetAddress" />
+        </EntityType>
+        <Association Name="FK_IdentityRoleClaim_string__IdentityRole_RoleId">
+          <End Type="reviewablevotingModel.AspNetRole" Role="AspNetRole" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.AspNetRoleClaim" Role="AspNetRoleClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRoleClaim">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityUserClaim_string__ApplicationUser_UserId">
+          <End Type="reviewablevotingModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentityUserLogin_string__ApplicationUser_UserId">
+          <End Type="reviewablevotingModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voter_ASPUser">
+          <End Type="reviewablevotingModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="reviewablevotingModel.Voter" Role="Voter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voter">
+              <PropertyRef Name="AspNetUsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Election_fk">
+          <End Type="reviewablevotingModel.Election" Role="Election" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.Candidate" Role="Candidate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Election">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="Candidate">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Party_fk">
+          <End Type="reviewablevotingModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.Candidate" Role="Candidate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyID" />
+            </Principal>
+            <Dependent Role="Candidate">
+              <PropertyRef Name="PartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VoterID_fk">
+          <End Type="reviewablevotingModel.Voter" Role="Voter" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.Candidate" Role="Candidate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="VoterID" />
+            </Principal>
+            <Dependent Role="Candidate">
+              <PropertyRef Name="VoterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElectionLevel_fk">
+          <End Type="reviewablevotingModel.ElectionLevel" Role="ElectionLevel" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.Election" Role="Election" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionLevel">
+              <PropertyRef Name="ElectionLevelID" />
+            </Principal>
+            <Dependent Role="Election">
+              <PropertyRef Name="ElectionLevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StreetAddress_fk">
+          <End Type="reviewablevotingModel.StreetAddress" Role="StreetAddress" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.VoterAddress" Role="VoterAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetAddress">
+              <PropertyRef Name="StreetAddressID" />
+            </Principal>
+            <Dependent Role="VoterAddress">
+              <PropertyRef Name="StreetAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZipCode_fk">
+          <End Type="reviewablevotingModel.ZipCode" Role="ZipCode" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.StreetAddress" Role="StreetAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZipCode">
+              <PropertyRef Name="ZipCodeID" />
+            </Principal>
+            <Dependent Role="StreetAddress">
+              <PropertyRef Name="ZipCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VoterHistoryID_fk">
+          <End Type="reviewablevotingModel.Voter" Role="Voter" Multiplicity="1" />
+          <End Type="reviewablevotingModel.VoterAddress" Role="VoterAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="VoterID" />
+            </Principal>
+            <Dependent Role="VoterAddress">
+              <PropertyRef Name="VoterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="reviewablevotingModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <End Type="reviewablevotingModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+        </Association>
+        <EntityType Name="UnconfirmedVote">
+          <Key>
+            <PropertyRef Name="UnconfirmedVoteID" />
+          </Key>
+          <Property Name="UnconfirmedVoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+          <Property Name="AuthToken" Type="Guid" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeToLive" Type="Int32" Nullable="false" />
+          <Property Name="VoteAddEnd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Candidate" Relationship="reviewablevotingModel.FK_UnconfirmedVotes_Candidates" FromRole="UnconfirmedVote" ToRole="Candidate" />
+        </EntityType>
+        <Association Name="FK_UnconfirmedVotes_Candidates">
+          <End Type="reviewablevotingModel.Candidate" Role="Candidate" Multiplicity="1" />
+          <End Type="reviewablevotingModel.UnconfirmedVote" Role="UnconfirmedVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="UnconfirmedVote">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="VoteID" />
+          </Key>
+          <Property Name="VoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="0" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="voterID" Type="Int32" />
+          <Property Name="VoteCheckSum" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CheckSum" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CumulativeCheckSum" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Candidate" Relationship="reviewablevotingModel.CandidateID_fk" FromRole="Vote" ToRole="Candidate" />
+          <NavigationProperty Name="Voter" Relationship="reviewablevotingModel.VotersID_fk" FromRole="Vote" ToRole="Voter" />
+        </EntityType>
+        <Association Name="CandidateID_fk">
+          <End Type="reviewablevotingModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.Vote" Role="Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="Vote">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VotersID_fk">
+          <End Type="reviewablevotingModel.Voter" Role="Voter" Multiplicity="0..1" />
+          <End Type="reviewablevotingModel.Vote" Role="Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="VoterID" />
+            </Principal>
+            <Dependent Role="Vote">
+              <PropertyRef Name="voterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="reviewablevotingModelStoreContainer" CdmEntityContainer="reviewablevotingEntities">
+          <EntitySetMapping Name="AspNetRoleClaims">
+            <EntityTypeMapping TypeName="reviewablevotingModel.AspNetRoleClaim">
+              <MappingFragment StoreEntitySet="AspNetRoleClaims">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="reviewablevotingModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="NormalizedName" ColumnName="NormalizedName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="reviewablevotingModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="reviewablevotingModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderDisplayName" ColumnName="ProviderDisplayName" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="reviewablevotingModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
+                <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
+                <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Candidates">
+            <EntityTypeMapping TypeName="reviewablevotingModel.Candidate">
+              <MappingFragment StoreEntitySet="Candidates">
+                <ScalarProperty Name="CandidateChecksum" ColumnName="CandidateChecksum" />
+                <ScalarProperty Name="PartyID" ColumnName="PartyID" />
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+                <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elections">
+            <EntityTypeMapping TypeName="reviewablevotingModel.Election">
+              <MappingFragment StoreEntitySet="Election">
+                <ScalarProperty Name="PreviousVoteID" ColumnName="PreviousVoteID" />
+                <ScalarProperty Name="ElectionLevelID" ColumnName="ElectionLevelID" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElectionLevels">
+            <EntityTypeMapping TypeName="reviewablevotingModel.ElectionLevel">
+              <MappingFragment StoreEntitySet="ElectionLevel">
+                <ScalarProperty Name="ElectionLevel1" ColumnName="ElectionLevel" />
+                <ScalarProperty Name="ElectionLevelID" ColumnName="ElectionLevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parties">
+            <EntityTypeMapping TypeName="reviewablevotingModel.Party">
+              <MappingFragment StoreEntitySet="Party">
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="PartyID" ColumnName="PartyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StreetAddresses">
+            <EntityTypeMapping TypeName="reviewablevotingModel.StreetAddress">
+              <MappingFragment StoreEntitySet="StreetAddress">
+                <ScalarProperty Name="ZipCodeID" ColumnName="ZipCodeID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="StreetAddressID" ColumnName="StreetAddressID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voters">
+            <EntityTypeMapping TypeName="reviewablevotingModel.Voter">
+              <MappingFragment StoreEntitySet="Voter">
+                <ScalarProperty Name="AspNetUsersID" ColumnName="AspNetUsersID" />
+                <ScalarProperty Name="Private_ID" ColumnName="Private_ID" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoterAddresses">
+            <EntityTypeMapping TypeName="reviewablevotingModel.VoterAddress">
+              <MappingFragment StoreEntitySet="VoterAddress">
+                <ScalarProperty Name="StreetAddressID" ColumnName="StreetAddressID" />
+                <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+                <ScalarProperty Name="VoterAddressID" ColumnName="VoterAddressID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZipCodes">
+            <EntityTypeMapping TypeName="reviewablevotingModel.ZipCode">
+              <MappingFragment StoreEntitySet="ZipCode">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode1" ColumnName="ZipCode" />
+                <ScalarProperty Name="ZipCodeID" ColumnName="ZipCodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="reviewablevotingModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="UnconfirmedVotes">
+            <EntityTypeMapping TypeName="reviewablevotingModel.UnconfirmedVote">
+              <MappingFragment StoreEntitySet="UnconfirmedVotes">
+                <ScalarProperty Name="VoteAddEnd" ColumnName="VoteAddEnd" />
+                <ScalarProperty Name="TimeToLive" ColumnName="TimeToLive" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="AuthToken" ColumnName="AuthToken" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="UnconfirmedVoteID" ColumnName="UnconfirmedVoteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Votes">
+            <EntityTypeMapping TypeName="reviewablevotingModel.Vote">
+              <MappingFragment StoreEntitySet="Vote">
+                <ScalarProperty Name="CumulativeCheckSum" ColumnName="CumulativeCheckSum" />
+                <ScalarProperty Name="CheckSum" ColumnName="CheckSum" />
+                <ScalarProperty Name="VoteCheckSum" ColumnName="VoteCheckSum" />
+                <ScalarProperty Name="voterID" ColumnName="voterID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="VoteID" ColumnName="VoteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

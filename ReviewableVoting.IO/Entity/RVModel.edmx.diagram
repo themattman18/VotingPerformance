@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a8e4261d7a72456eb43f5e56bce69668" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="reviewablevotingModel.AspNetRoleClaim" Width="1.5" PointX="5.25" PointY="14.5" />
+        <EntityTypeShape EntityType="reviewablevotingModel.AspNetRole" Width="1.5" PointX="3" PointY="14.375" />
+        <EntityTypeShape EntityType="reviewablevotingModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="reviewablevotingModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="11.625" />
+        <EntityTypeShape EntityType="reviewablevotingModel.AspNetUser" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="reviewablevotingModel.Candidate" Width="1.5" PointX="8.25" PointY="4.875" />
+        <EntityTypeShape EntityType="reviewablevotingModel.Election" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="reviewablevotingModel.ElectionLevel" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="reviewablevotingModel.Party" Width="1.5" PointX="6" PointY="8" />
+        <EntityTypeShape EntityType="reviewablevotingModel.StreetAddress" Width="1.5" PointX="3" PointY="18.25" />
+        <EntityTypeShape EntityType="reviewablevotingModel.Voter" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="reviewablevotingModel.VoterAddress" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="reviewablevotingModel.ZipCode" Width="1.5" PointX="0.75" PointY="18.25" />
+        <AssociationConnector Association="reviewablevotingModel.FK_IdentityRoleClaim_string__IdentityRole_RoleId" />
+        <AssociationConnector Association="reviewablevotingModel.FK_IdentityUserClaim_string__ApplicationUser_UserId" />
+        <AssociationConnector Association="reviewablevotingModel.FK_IdentityUserLogin_string__ApplicationUser_UserId" />
+        <AssociationConnector Association="reviewablevotingModel.FK_Voter_ASPUser" />
+        <AssociationConnector Association="reviewablevotingModel.Election_fk" />
+        <AssociationConnector Association="reviewablevotingModel.Party_fk" />
+        <AssociationConnector Association="reviewablevotingModel.VoterID_fk" />
+        <AssociationConnector Association="reviewablevotingModel.ElectionLevel_fk" />
+        <AssociationConnector Association="reviewablevotingModel.StreetAddress_fk" />
+        <AssociationConnector Association="reviewablevotingModel.ZipCode_fk" />
+        <AssociationConnector Association="reviewablevotingModel.VoterHistoryID_fk" />
+        <AssociationConnector Association="reviewablevotingModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="reviewablevotingModel.UnconfirmedVote" Width="1.5" PointX="10.5" PointY="9.125" />
+        <AssociationConnector Association="reviewablevotingModel.FK_UnconfirmedVotes_Candidates" />
+        <EntityTypeShape EntityType="reviewablevotingModel.Vote" Width="1.5" PointX="10.5" PointY="4.875" />
+        <AssociationConnector Association="reviewablevotingModel.CandidateID_fk" />
+        <AssociationConnector Association="reviewablevotingModel.VotersID_fk" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
